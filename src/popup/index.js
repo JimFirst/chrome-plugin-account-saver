@@ -1,4 +1,3 @@
 import { createApp } from 'vue'
-createApp({
-  template: '<div>{{ hi }}</div>'
-}).mount('#popup')
+import App from './App.vue'
+createApp(App).mount('#popup')

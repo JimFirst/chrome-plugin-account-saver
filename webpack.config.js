@@ -3,6 +3,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const vueLoaderConfig = require('./build/vue-loader.conf.js')
+const { VueLoaderPlugin } = require('vue-loader')
+
 module.exports = {
   mode: 'development',
   context: path.resolve(__dirname, './src'),
@@ -17,6 +20,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: vueLoaderConfig
+      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
@@ -53,5 +61,6 @@ module.exports = {
         { from: 'manifest.json', to: 'manifest.json' },
       ]
     }),
+    new VueLoaderPlugin()
   ]
 }
