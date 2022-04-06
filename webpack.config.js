@@ -12,11 +12,23 @@ module.exports = {
   entry: {
     popup: './popup/index.js',
     background: './background/index.js',
+    content: './content/index.js',
+    inject: './inject/index.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: './',
     filename: '[name].js',
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, './dist'),
+    },
+    liveReload: true,  // liveReload替代hot进行热更新
+    port: 9000,
+    devMiddleware: {
+      writeToDisk: true,
+    }
   },
   module: {
     rules: [
@@ -51,9 +63,9 @@ module.exports = {
       template: './popup/index.html',
       inject: true,
       chunks: ['popup'],
-      filename: 'popup.html',
+      filename: 'index.html',
     }),
-    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns:[
