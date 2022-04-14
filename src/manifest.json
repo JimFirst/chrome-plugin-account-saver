@@ -4,7 +4,7 @@
 	"description": "account saver",
 	"version": "1.0.0",
 	"action": {
-		"default_icon": "/assets/icon.png",
+		"default_icon": "/assets/horse.png",
 		"default_popup": "/index.html"
 	},
 	"permissions": ["proxy", "tabs", "storage", "declarativeNetRequest", "declarativeNetRequestFeedback", "declarativeNetRequestWithHostAccess"],
@@ -22,7 +22,7 @@
 	"content_scripts": [{
 		"matches": ["http://*/*", "https://*/*"],
 		"js": [
-			"./content.js"
+			"/content.js"
 		],
 		"all_frames": true
 	}]
